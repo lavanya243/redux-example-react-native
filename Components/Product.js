@@ -1,16 +1,24 @@
 import {View, Text, Image, Button} from 'react-native';
-import React from 'react';
-import {useDispatch} from 'react-redux';
-import {addToCart} from './redux/Action';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {addToCart} from './redux/action';
 
 export default function Product(props) {
   const item = props.item;
   const dispatch = useDispatch();
-
+  const cartItems = useSelector(state => state.reducer);
   const handleAddToCart = () => {
     console.warn('called', item);
     dispatch(addToCart(item));
   };
+
+  useEffect(() => {
+    if (cartItems && cartItems.length) {
+      cartItems.forEach(element => {
+        console.warn('-----------------', element);
+      });
+    }
+  }, [cartItems]);
   return (
     <View
       style={{

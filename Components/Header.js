@@ -1,7 +1,13 @@
 import {View, Text} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useSelector} from 'react-redux';
 
 export default function Header() {
+  const cartData = useSelector(state => state.reducer);
+  const [cartItems, setCartItems] = useState(0);
+  useEffect(() => {
+    setCartItems(cartData.length);
+  }, [cartData]);
   return (
     <View>
       <Text
@@ -11,7 +17,7 @@ export default function Header() {
           padding: 10,
           backgroundColor: 'pink',
         }}>
-        Header
+        {cartItems}
       </Text>
     </View>
   );

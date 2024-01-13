@@ -1,4 +1,4 @@
-import {ADD_TO_CART} from './Constants';
+import {ADD_TO_CART} from './constants';
 
 export function addToCart(item) {
   return {
